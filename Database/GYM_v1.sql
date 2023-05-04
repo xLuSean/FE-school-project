@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 02, 2023 at 01:54 AM
+-- Generation Time: May 04, 2023 at 01:44 AM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -259,9 +259,23 @@ CREATE TABLE `exercise_record` (
 
 CREATE TABLE `exercise_type` (
   `sid` smallint(6) NOT NULL,
-  `exercise_type` smallint(6) NOT NULL,
-  `exercise_img` varchar(255) NOT NULL
+  `exercise_type` varchar(255) NOT NULL,
+  `exercise_img` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `exercise_type`
+--
+
+INSERT INTO `exercise_type` (`sid`, `exercise_type`, `exercise_img`) VALUES
+(1, 'bench press', NULL),
+(29, 'Squat', NULL),
+(30, 'Deadlift', NULL),
+(31, 'Shoulder press', NULL),
+(32, 'Barbell curl', NULL),
+(33, 'Tricep extension', NULL),
+(34, 'Leg press', NULL),
+(35, 'Pull-up', NULL);
 
 -- --------------------------------------------------------
 
@@ -274,9 +288,47 @@ CREATE TABLE `food_type` (
   `food_type` varchar(255) NOT NULL COMMENT 'name of food',
   `calories` float NOT NULL,
   `protein` float NOT NULL,
-  `unit` smallint(6) NOT NULL,
-  `food_img` varchar(255) NOT NULL
+  `unit` enum('100g','100ml') NOT NULL,
+  `food_img` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `food_type`
+--
+
+INSERT INTO `food_type` (`sid`, `food_type`, `calories`, `protein`, `unit`, `food_img`) VALUES
+(1, 'chicken breast', 165, 31, '100g', NULL),
+(2, 'Salmon (cooked)', 175, 35, '100g', NULL),
+(3, 'Black beans (cooked)', 132, 9, '100g', NULL),
+(4, 'Greek yogurt', 73, 10, '100g', NULL),
+(5, 'Tuna (canned in water)', 116, 25, '100g', NULL),
+(6, 'Lentils (cooked)', 116, 9, '100g', NULL),
+(7, 'Beef sirloin (cooked)', 177, 27, '100g', NULL),
+(8, 'Quinoa (cooked)', 120, 4, '100g', NULL),
+(9, 'Cottage cheese', 98, 11, '100g', NULL),
+(10, 'Almonds', 576, 21, '100g', NULL),
+(11, 'Turkey breast (cooked)', 158, 32, '100g', NULL),
+(12, 'Edamame (cooked)', 121, 11, '100g', NULL),
+(13, 'Peanut butter', 588, 25, '100g', NULL),
+(14, 'Shrimp (cooked)', 99, 20, '100g', NULL),
+(15, 'Chickpeas (cooked)', 164, 7, '100g', NULL),
+(16, 'Eggs (cooked)', 155, 13, '100g', NULL),
+(17, 'Tilapia (cooked)', 96, 20, '100g', NULL),
+(18, 'Brown rice (cooked)', 111, 2, '100g', NULL),
+(19, 'Pork loin (cooked)', 162, 29, '100g', NULL),
+(20, 'Chia seeds', 486, 17, '100g', NULL),
+(21, 'Bison (cooked)', 143, 28, '100g', NULL),
+(22, 'Walnuts', 654, 15, '100g', NULL),
+(23, 'Cottage cheese (low-fat)', 72, 15, '100g', NULL),
+(24, 'Pinto beans (cooked)', 143, 7, '100g', NULL),
+(25, 'Milk (low-fat)', 51, 3.4, '100g', NULL),
+(26, 'Chicken thigh (cooked)', 209, 24, '100g', NULL),
+(27, 'Soy milk', 33, 3.3, '100g', NULL),
+(28, 'Tofu', 62, 6, '100g', NULL),
+(29, 'Pistachios', 562, 20, '100g', NULL),
+(30, 'Halibut (cooked)', 119, 23, '100g', NULL),
+(31, 'Green peas (cooked)', 81, 5, '100g', NULL),
+(32, 'Beef tenderloin (cooked)', 250, 25, '100g', NULL);
 
 -- --------------------------------------------------------
 
@@ -486,13 +538,13 @@ ALTER TABLE `exercise_record`
 -- AUTO_INCREMENT for table `exercise_type`
 --
 ALTER TABLE `exercise_type`
-  MODIFY `sid` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `sid` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `food_type`
 --
 ALTER TABLE `food_type`
-  MODIFY `sid` smallint(6) NOT NULL AUTO_INCREMENT COMMENT 'food type ID';
+  MODIFY `sid` smallint(6) NOT NULL AUTO_INCREMENT COMMENT 'food type ID', AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `shopping_cart`
