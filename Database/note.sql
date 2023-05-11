@@ -1,3 +1,20 @@
+
+CREATE VIEW record_diet_Ref AS
+(SELECT dr.sid, mb.name, ft.food_type, dr.quantity, dr.diet_time
+FROM record_diet_record AS dr, member AS mb, record_food_type AS ft
+WHERE dr.member_sid = mb.sid AND dr.food_sid = ft.sid)
+
+CREATE VIEW exe_record_Ref AS
+(SELECT er.sid, mb.name, et.exercise_name, er.weight, er.sets, er.reps, er.exe_date
+FROM record_exercise_record AS er, member AS mb, record_exercise_type AS et
+WHERE er.member_sid = mb.sid AND er.exe_type_sid = et.sid)
+
+
+(select `ref`.`sid` AS `sid`,`et`.`exercise_name` AS `exercise_name`,`bp`.`bodyPart_name` AS `bodyPart_name` from `gym_v2`.`record_body_part` `bp` join `gym_v2`.`record_exercise_type` `et` join `gym_v2`.`record_exercis_bodypart_ref` `ref` where ((`bp`.`sid` = `ref`.`bodyPart_sid`) and (`et`.`sid` = `ref`.`exerciseType_sid`)))
+
+
+-- === GYM_v1 ===========================================================
+
 -- combination primary key
 CREATE TABLE `GYM_v1`.`test` (
     `sid` INT NOT NULL AUTO_INCREMENT,
@@ -33,49 +50,3 @@ INSERT INTO `shopping_cart`
 
 
 
-
--- food type
-INSERT INTO `food_type` (`sid`, `food_type`, `calories`, `protein`, `unit`, `food_img`) VALUES 
-(NULL, 'Salmon (cooked)', '175', '35', '100g', NULL),
-(NULL, 'Black beans (cooked)', '132', '9', '100g', NULL),
-(NULL, 'Greek yogurt', '73', '10', '100g', NULL),
-(NULL, 'Tuna (canned in water)', '116', '25', '100g', NULL),
-(NULL, 'Lentils (cooked)', '116', '9', '100g', NULL),
-(NULL, 'Beef sirloin (cooked)', '177', '27', '100g', NULL),
-(NULL, 'Quinoa (cooked)', '120', '4', '100g', NULL),
-(NULL, 'Cottage cheese', '98', '11', '100g', NULL),
-(NULL, 'Almonds', '576', '21', '100g', NULL),
-(NULL, 'Turkey breast (cooked)', '158', '32', '100g', NULL),
-(NULL, 'Edamame (cooked)', '121', '11', '100g', NULL),
-(NULL, 'Peanut butter', '588', '25', '100g', NULL),
-(NULL, 'Shrimp (cooked)', '99', '20', '100g', NULL),
-(NULL, 'Chickpeas (cooked)', '164', '7', '100g', NULL),
-(NULL, 'Eggs (cooked)', '155', '13', '100g', NULL),
-(NULL, 'Tilapia (cooked)', '96', '20', '100g', NULL),
-(NULL, 'Brown rice (cooked)', '111', '2', '100g', NULL),
-(NULL, 'Pork loin (cooked)', '162', '29', '100g', NULL),
-(NULL, 'Chia seeds', '486', '17', '100g', NULL),
-(NULL, 'Bison (cooked)', '143', '28', '100g', NULL),
-(NULL, 'Walnuts', '654', '15', '100g', NULL),
-(NULL, 'Cottage cheese (low-fat)', '72', '15', '100g', NULL),
-(NULL, 'Pinto beans (cooked)', '143', '7', '100g', NULL),
-(NULL, 'Milk (low-fat)', '51', '3.4', '100g', NULL),
-(NULL, 'Chicken thigh (cooked)', '209', '24', '100g', NULL),
-(NULL, 'Soy milk', '33', '3.3', '100g', NULL),
-(NULL, 'Tofu', '62', '6', '100g', NULL),
-(NULL, 'Pistachios', '562', '20', '100g', NULL),
-(NULL, 'Halibut (cooked)', '119', '23', '100g', NULL),
-(NULL, 'Green peas (cooked)', '81', '5', '100g', NULL),
-(NULL, 'Beef tenderloin (cooked)', '250', '25', '100g', NULL)
-
--- exercise type
-INSERT INTO `exercise_type` (`sid`, `exercise_type`, `exercise_img`) 
-VALUES 
-(NULL, 'Bench press', NULL),
-(NULL, 'Squat', NULL),
-(NULL, 'Deadlift', NULL),
-(NULL, 'Shoulder press', NULL),
-(NULL, 'Barbell curl', NULL),
-(NULL, 'Tricep extension', NULL),
-(NULL, 'Leg press', NULL),
-(NULL, 'Pull-up', NULL);
